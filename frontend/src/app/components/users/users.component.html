@@ -1,0 +1,40 @@
+<div class="row" style="margin-bottom:30px">
+    <form (submit)="addAndUpdate()">
+        <div class="form-group">
+            <input type="text" [(ngModel)]="user.email" name="email" class="form-control" placeholder="Email" required autofocus>
+        </div>
+        <div class="form-group">
+            <input type="text" [(ngModel)]="user.country" name="country" class="form-control" placeholder="Country" required autofocus>
+        </div>
+        <div class="form-group">
+            <input type="password" [(ngModel)]="user.password" name="password" class="form-control" placeholder="Password" required>
+        </div>
+        <button class="btn btn-success btn-block" *ngIf='option == 1'>
+            Agregar
+        </button>
+        <button class="btn btn-success btn-block" *ngIf='option == 2'>
+            Editar
+        </button>
+        <button class="btn btn-success btn-block" *ngIf='option == 2' (click)="goBack()">
+            Volver a agregar
+        </button>
+    </form>
+</div>
+<div class="row">
+    <div class="col-md-4" *ngFor="let user of privateUsers">
+        <div class="card" (click)="selected(user)" >
+            <div class="card-header">
+                {{user.email}}
+            </div>
+            <div class="card-body">
+                {{user.country}}
+            </div>
+            <div class="card-footer">
+                <button class="btn btn-danger btn-block" (click)="delete(user._id)">
+                    Eliminar
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+
